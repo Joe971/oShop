@@ -31,7 +31,7 @@
 **Optionnellement**
 
 - Créer le dossier assets dans public
-- dans le dossier assets création d'un dossier css
+- dans le dossier assets création d'un dossier css, images, fonts, js
 
 ### Dossier app
 
@@ -76,6 +76,8 @@ composer require symfony/var-dumper
 ```
 
 ### Inclusion du fichier autoload.php créé par composer dans public/index.php
+
+Composer est un gestionnaire de dependance pour php. Dispose d'un autoloader qui permet d'inclure automatiquement les fichiers dont on a besoin sans faire de multiple require. On peut utiliser cet autoloader pour nos propre librairie egalement. autoload que les classes.
 
 ```php
 <?php
