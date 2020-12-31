@@ -31,8 +31,6 @@ $router->map(
   ],
   'home' // nom de la route
 );
-
-
 // Routes end
 
 

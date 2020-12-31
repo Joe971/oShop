@@ -116,7 +116,7 @@ Attention de ne pas oublier de configurer le basePath d'AltoRouter !
 
 ```php
 $router = new AltoRouter();
-$router->setBasePath($\_SERVER["BASE_URI"]);
+$router->setBasePath($_SERVER["BASE_URI"]);
 ```
 
 ---
@@ -130,8 +130,7 @@ $router->setBasePath($\_SERVER["BASE_URI"]);
 $router->map(
   'GET', // la methode HTTP qui est autorisée
   '/', // url a laquelle cette route réagit
-  //"target" : ce tableau stocke les noms de l'action et du controller
-  // qui vont se déclancher pour réagir a cette URL
+  //"target" : ce tableau stocke les noms de l'action et du controller qui vont se déclancher pour réagir a cette URL
   [
     'controller' => 'MainController'
     'action' => 'home',
@@ -144,7 +143,6 @@ $router->map(
 
 ```php
 // DISPATCHER START
-
 // Demande à altorouter de "gerer" le routing ("que dois je faire" en fontion de l'url rentrée par le visiteur)
 $match = $router->match();
 dump ($match);
