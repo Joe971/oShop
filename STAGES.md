@@ -146,7 +146,7 @@ $router->map(
 ### Coder (ou copier/coller) la partie dispatcher
 
 ```php
-// DISPATCHER
+// DISPATCHER START
 
 // Demande à altorouter de "gerer" le routing ("que dois je faire" en fontion de l'url rentrée par le visiteur)
 $match = $router->match();
@@ -163,7 +163,7 @@ dump ($match);
 */
 
 // Si la route existe bien
-if($match){
+if($match){ // <=> if ($match == true)
 
   $controllerToUse = '\Oshop\Controllers\\' . $match['target']['controller'];
   $methodToUse = $match['target']['action'];
@@ -173,6 +173,7 @@ if($match){
   $controller = new Oshop\Controllers\MainController();
   $controller->pageNotFoundAction();
 }
+// DISPATCHER END
 ```
 
 <strong style="color:red">
