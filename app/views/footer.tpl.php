@@ -128,15 +128,12 @@
   </footer>
 
 
-  <script id="__bs_script__">//<![CDATA[
-    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.24.7'><\/script>".replace("HOST", location.hostname));
-//]]></script>
-  <!-- JS -->
 
-  <script src="<?= $absoluteURL; ?>/assets/js/jquery.min.js"></script>
-  <script src="<?= $absoluteURL; ?>/assets/js/popper.min.js"></script>
-  <script src="<?= $absoluteURL; ?>/assets/js/bootstrap.min.js"></script>
-  <script src="<?= $absoluteURL; ?>/assets/js/app.js"></script>
+  <!-- JS -->
+  <script src="<?=$absoluteURL;?>/assets/js/jquery.min.js"></script>
+  <script src="<?=$absoluteURL;?>/assets/js/popper.min.js"></script>
+  <script src="<?=$absoluteURL;?>/assets/js/bootstrap.min.js"></script>
+  <script src="<?=$absoluteURL;?>/assets/js/app.js"></script>
 </body>
 
 </html>

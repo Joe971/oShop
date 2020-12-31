@@ -5,8 +5,8 @@ require __DIR__ . '/../vendor/autoload.php';
 
 
 
-// dump ($_SERVER); on obtient dans ce tableau l'index : "BASE_URI" => "/oShop/public"
-// dump ($_SERVER["BASE_URI"]); // => "/oShop/public"
+// dump ($_SERVER); on obtient dans ce tableau l'index : "BASE_URI" => "/Oshop/public"
+// dump ($_SERVER["BASE_URI"]); // => "/Oshop/public"
 
 
 // Require de views
@@ -18,23 +18,93 @@ require __DIR__ . '/../vendor/autoload.php';
 $router = new AltoRouter();
 $router->setBasePath($_SERVER["BASE_URI"]);
 
-// Routes start
-// Route pour HOME
+// ROUTES START
+// Route pour home
 $router->map(
   'GET', // la methode HTTP qui est autorisée
   '/', // url a laquelle cette route réagit
-  //"target" : ce tableau stocke les noms de l'action et du controller 
-  // qui vont se déclancher pour réagir a cette URL
+  //"target" : ce tableau stocke les noms de l'action et du controller qui vont se déclancher pour réagir a cette URL
   [
     'controller' => 'MainController',
     'action' => 'home'
   ],
   'home' // nom de la route
 );
-// Routes end
+
+// Routes pour les mentions legales
+$router->map(
+  'GET',
+  '/legal-notice',
+  [
+      'controllerName' => 'MainController',
+      'actionName' => 'legalNotice'
+  ],
+  'main-legalNotice'
+);
+
+// Route pour les categories
+$router->map(
+  'GET',
+  // entre les [] , nous configurons la la partie variable de l'url
+  // i: signifie que nous voulons avoir un nombre (int) dans l'url
+  // id, est la clé qui dans laquelle sera stocké le nombre capturé dans l'url
+  '/catalog/category/[i:idCategory]',
+  [
+      'controllerName' => 'CatalogController',
+      'actionName' => 'category'
+  ],
+  'catalog-category'
+);
+
+// Route pour les marques
+$router->map(
+  'GET',
+  '/catalog/brand/[i:idBrand]',
+  [
+      'controllerName' => 'CatalogController',
+      'actionName' => 'brand'
+  ],
+  'catalog-brand'
+);
+
+//Routes pour les types
+$router->map(
+  'GET',
+  '/catalog/type/[i:idType]',
+  [
+      'controllerName' => 'CatalogController',
+      'actionName' => 'type'
+  ],
+  'catalog-type'
+);
+
+// ROUTES pour les produits
+$router->map(
+  'GET',
+  '/catalog/product/[i:idProduct]',
+  [
+      'controllerName' => 'CatalogController',
+      'actionName' => 'product'
+  ],
+  'catalog-product'
+);
+
+// Route pour la recherche
+$router->map(
+  'GET',
+  // [a:nomVariable]  ; le a: est pour dire "n'importe quel type"
+  // https://altorouter.com/usage/mapping-routes.html
+  '/catalog/search/[a:searchedWord]',
+  [
+      'controllerName' => 'CatalogController',
+      'actionName' => 'search'
+  ],
+  'catalog-search'
+);
+// ROUTES END
 
 
-// Dispatcher start
+// DISPATCHER START
 // Demande à altorouter de "gerer" le routing en fontion de l'url rentrée par le visiteur
 $match = $router->match();
 /*
@@ -64,4 +134,4 @@ else {
   $controller->pageNotFoundAction();
 
 }
-// Dispatcher end
+// DISPATCHER END

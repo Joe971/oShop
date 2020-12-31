@@ -6,9 +6,9 @@ class CoreController{
     // Methode show qui nous permet d'avoir un affichage dynamique des views
     protected function show($viewName, $viewData = []){
 
-        // BASE URI sera disponible dans nos templates
+        // $absoluteURL sera disponible dans nos templates
         $absoluteURL = $_SERVER['BASE_URI']; 
-
+        // Fais un pont de $router pour le rendre accessible partout
         global $router;
 
         // PHP Fournit une fonction qui créé une variable pour chaque élément d'un tableau associatif. Transformation des index de $viewData en variables

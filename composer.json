@@ -1,5 +1,5 @@
 {
-  "name": "ja/o-shop",
+  "name": "ja/oshop",
   "require": {
     "altorouter/altorouter": "^2.0",
     "symfony/var-dumper": "^5.2"

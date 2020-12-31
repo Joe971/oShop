@@ -188,12 +188,12 @@ Exemple
 ```js
 "autoload": {
     "psr-4": {
-        "ORevision\\": "app/"
+        "Oshop\\": "app/"
     }
 }
 ```
 
-On dit à composer qu'il va autoloader des classes en respectant le standard psr-4 et que le namesapce oShop est stocké dans le dossier /app
+On dit à composer qu'il va autoloader des classes en respectant le standard psr-4 et que le namesapce Oshop est stocké dans le dossier /app
 Maintenant on va creer des classe et elle seront autoloadés. Plus besoin de require ces classes.
 
 ### Génération de l'autoload
@@ -221,11 +221,14 @@ class CoreController
 {
     public function show($viewName, $viewVars = [])
     {
+        // Ne pas oublier le $baseURI, il faut cette variable pour charger les assets
+        $absoluteURL = $_SERVER['BASE_URI'];
+        // Fais un pont de $router pour le rendre accessible partout
         global $router;
-        //transformation des index de $viewVars en variables
+        // PHP Fournit une fonction qui créé une variable pour chaque élément d'un tableau associatif. Transformation des index de $viewData en variables
         extract($viewVars);
-        // ne pas oublier le $baseURI, il faut cette variable pour charger les assets
-        $baseURI = $_SERVER['BASE_URI'];
+
+
         require __DIR__ . '/../views/header.tpl.php';
         require __DIR__ . '/../views/' . $viewName . '.tpl.php';
         require __DIR__ . '/../views/footer.tpl.php';
