@@ -18,7 +18,7 @@ require __DIR__ . '/../vendor/autoload.php';
 $router = new AltoRouter();
 $router->setBasePath($_SERVER["BASE_URI"]);
 
-
+// Routes start
 // Route pour HOME
 $router->map(
   'GET', // la methode HTTP qui est autorisée
@@ -33,12 +33,15 @@ $router->map(
 );
 
 
-// DISPATCHER
+// Routes end
 
-// Demande à altorouter de "gerer" le routing ("que dois je faire" en fontion de l'url rentrée par le visiteur)
+
+// Dispatcher start
+// Demande à altorouter de "gerer" le routing en fontion de l'url rentrée par le visiteur
 $match = $router->match();
-dump ($match);
 /*
+dump ($match);
+
  array:3 [▼
   "target" => array:2 [▼
     "controller" => "MainController"
@@ -52,11 +55,15 @@ dump ($match);
 // Si la route existe bien
 if($match){
  
-  $controllerToUse = '\oShop\Controllers\\' . $match['target']['controller'];
+  $controllerToUse = '\Oshop\Controllers\\' . $match['target']['controller'];
   $methodToUse = $match['target']['action'];
   $controller = new $controllerToUse();
   $controller->$methodToUse($match['params']);
-} else {
-  $controller = new oShop\Controllers\MainController();
+} 
+// Gestion 404
+else {
+  $controller = new Oshop\Controllers\MainController();
   $controller->pageNotFoundAction();
+
 }
+// Dispatcher end

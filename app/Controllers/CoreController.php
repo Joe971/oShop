@@ -1,22 +1,26 @@
 <?php
-namespace oShop\Controllers;
+namespace Oshop\Controllers;
 
+// CoreController start
 class CoreController{
-   
+    // Methode show qui nous permet d'avoir un affichage dynamique des views
     protected function show($viewName, $viewData = []){
+
+        // BASE URI sera disponible dans nos templates
+        $absoluteURL = $_SERVER['BASE_URI']; 
 
         global $router;
 
         // PHP Fournit une fonction qui créé une variable pour chaque élément d'un tableau associatif. Transformation des index de $viewData en variables
         extract($viewData);
-        // BASE URI sera disponible dans nos templates
-        $absoluteURL    = $_SERVER['BASE_URI']; 
-
+        dump($viewData);
+       
         require __DIR__ . '/../views/header.tpl.php';
         require __DIR__ . '/../views/' . $viewName . '.tpl.php';
         require __DIR__ . '/../views/footer.tpl.php';
     }
 
-}// fin de class CoreController
+}
+// CoreController end
 
 ?>

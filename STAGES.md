@@ -110,15 +110,12 @@ require __DIR__ . '/../app/views/footer.tpl.php';
 
 ### Initialisation d'AltoRouter dans index.php
 
-```php
-$router = new AltoRouter();
-```
-
 <strong style="color:red">
 Attention de ne pas oublier de configurer le basePath d'AltoRouter !
 </strong>
 
 ```php
+$router = new AltoRouter();
 $router->setBasePath($\_SERVER["BASE_URI"]);
 ```
 
