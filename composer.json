@@ -1,7 +1,12 @@
 {
-    "name": "ja/o-shop",
-    "require": {
-        "altorouter/altorouter": "^2.0",
-        "symfony/var-dumper": "^5.2"
+  "name": "ja/o-shop",
+  "require": {
+    "altorouter/altorouter": "^2.0",
+    "symfony/var-dumper": "^5.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "oShop\\": "app/"
     }
+  }
 }

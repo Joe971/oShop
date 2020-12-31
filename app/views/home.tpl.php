@@ -34,7 +34,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div
         <div class="col-lg-4">
             <div class="card border-0 text-center text-dark">
               <img src="assets/images/categ1.jpeg"

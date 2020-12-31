@@ -118,17 +118,67 @@ $router = new AltoRouter();
 Attention de ne pas oublier de configurer le basePath d'AltoRouter !
 </strong>
 
+```php
+$router->setBasePath($\_SERVER["BASE_URI"]);
+```
+
 ---
 
 ## Configuration des routes et lancement d'AltoRouter
 
 ### Création d'une route pour la home (afin de tester)
 
+```php
+// route HOME
+$router->map(
+  'GET', // la methode HTTP qui est autorisée
+  '/', // url a laquelle cette route réagit
+  //"target" : ce tableau stocke les noms de l'action et du controller
+  // qui vont se déclancher pour réagir a cette URL
+  [
+    'controller' => 'MainController'
+    'action' => 'home',
+  ],
+  'home' // nom de la route
+);
+```
+
 ### Coder (ou copier/coller) la partie dispatcher
+
+```php
+// DISPATCHER
+
+// Demande à altorouter de "gerer" le routing ("que dois je faire" en fontion de l'url rentrée par le visiteur)
+$match = $router->match();
+dump ($match);
+/*
+ array:3 [▼
+  "target" => array:2 [▼
+    "controller" => "MainController"
+    "action" => "home"
+  ]
+  "params" => []
+  "name" => "home"
+]
+*/
+
+// Si la route existe bien
+if($match){
+
+  $controllerToUse = '\Oshop\Controllers\\' . $match['target']['controller'];
+  $methodToUse = $match['target']['action'];
+  $controller = new $controllerToUse();
+  $controller->$methodToUse($match['params']);
+} else {
+  $controller = new Oshop\Controllers\MainController();
+  $controller->pageNotFoundAction();
+}
+```
 
 <strong style="color:red">
 Attention à la partie qui gère le namespace en dur !
 </strong>
+
 ```php
 $controllerName = 'ORevision\Controllers\\'. $routeData['controllerName'];
 ```
@@ -146,6 +196,9 @@ Exemple
     }
 }
 ```
+
+On dit à composer qu'il va autoloader des classes en respectant le standard psr-4 et que le namesapce oShop est stocké dans le dossier /app
+Maintenant on va creer des classe et elle seront autoloadés. Plus besoin de require ces classes.
 
 ### Génération de l'autoload
 
